@@ -1,0 +1,538 @@
+.table-container {
+  padding: 20px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(153, 0, 51, 0.1);
+  border: 1px solid rgba(153, 0, 51, 0.1);
+}
+
+.meeting-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.meeting-table th {
+  background: #999999;
+  padding: 16px 8px;
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  border-bottom: 2px solid #999999;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.meeting-table td {
+  padding: 16px 8px;
+  border-bottom: 1px solid #F5F5F5;
+  vertical-align: top;
+  text-align: center;
+  background-color: white;
+}
+
+.meeting-table tr:hover {
+  background-color: rgba(153, 0, 51, 0.05);
+}
+
+.meeting-table tr:hover td {
+  background-color: rgba(153, 0, 51, 0.05);
+}
+
+.checkbox-header,
+.checkbox-cell {
+  width: 40px;
+  text-align: center;
+}
+
+.checkbox-header input[type="checkbox"],
+.checkbox-cell input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #990033;
+}
+
+.meeting-name {
+  font-weight: 600;
+  color: #000000;
+  max-width: 200px;
+  text-align: center;
+}
+
+.meeting-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+.meeting-name-container span {
+  flex: 1;
+}
+
+.meeting-name-clickable {
+  cursor: pointer;
+  color: #990033;
+  text-decoration: none;
+  transition: all 0.2s;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.meeting-name-clickable:hover {
+  background-color: rgba(153, 0, 51, 0.1);
+  color: #800029;
+  text-decoration: underline;
+}
+
+.live-recording-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #990033, #B30040);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(153, 0, 51, 0.3);
+}
+
+.live-recording-icon:hover {
+  background: linear-gradient(135deg, #800029, #990033);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(153, 0, 51, 0.4);
+}
+
+.live-recording-icon:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #990033;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.live-recording-icon:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #990033;
+  margin-bottom: -4px;
+  z-index: 1000;
+}
+
+.meeting-datetime {
+  min-width: 120px;
+  text-align: center;
+}
+
+.datetime-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+.datetime-info i {
+  color: #990033;
+  font-size: 10px;
+}
+
+.meeting-location {
+  color: #666;
+  max-width: 120px;
+  text-align: center;
+}
+
+.meeting-organizer {
+  color: #000000;
+  font-weight: 500;
+  max-width: 120px;
+  text-align: center;
+}
+
+.meeting-attendees {
+  color: #666;
+  max-width: 150px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.meeting-webex {
+  text-align: center;
+}
+
+.webex-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #990033, #B30040);
+  color: white;
+  border-radius: 50%;
+  font-size: 16px;
+  margin: 0 auto;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(153, 0, 51, 0.3);
+  cursor: pointer;
+  position: relative;
+}
+
+.webex-icon:hover {
+  background: linear-gradient(135deg, #800029, #990033);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(153, 0, 51, 0.4);
+}
+
+.webex-icon .webex-tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1000;
+}
+
+.webex-icon:hover .webex-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.webex-icon.connecting {
+  background: linear-gradient(135deg, #666666, #888888);
+  animation: pulse 1.5s infinite;
+}
+
+.webex-icon.connecting:hover {
+  background: linear-gradient(135deg, #555555, #777777);
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 2px 8px rgba(153, 0, 51, 0.3);
+  }
+  50% {
+    box-shadow: 0 2px 8px rgba(153, 0, 51, 0.6);
+  }
+  100% {
+    box-shadow: 0 2px 8px rgba(153, 0, 51, 0.3);
+  }
+}
+
+.no-webex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+  color: #999;
+  border-radius: 50%;
+  font-size: 14px;
+  margin: 0 auto;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #ddd;
+}
+
+.no-webex:hover {
+  background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
+  transform: scale(1.05);
+  color: #666;
+}
+
+.no-webex .webex-tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1000;
+}
+
+.no-webex:hover .webex-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.webex-button {
+  background: linear-gradient(135deg, #990033, #B30040);
+  color: white;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: none;
+  box-shadow: 0 2px 8px rgba(153, 0, 51, 0.3);
+}
+
+.webex-button:hover {
+  background: linear-gradient(135deg, #800029, #990033);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(153, 0, 51, 0.4);
+}
+
+.meeting-status {
+  text-align: center;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-scheduled {
+  background: #FFFFFF;
+  color: #990033;
+  border: 1px solid rgba(153, 0, 51, 0.2);
+}
+
+.status-in-progress {
+  background: linear-gradient(135deg, #999999, #B3B3B3);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.status-completed {
+  background: linear-gradient(135deg, #800029, #990033);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.meeting-minutes {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.minutes-button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+  margin: 0 auto;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.minutes-button.write {
+  background: linear-gradient(135deg, #999999, #B3B3B3);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.minutes-button.write:hover {
+  background: linear-gradient(135deg, #808080, #999999);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(153, 153, 153, 0.4);
+}
+
+.minutes-button.view {
+  background: linear-gradient(135deg, #990033, #B30040);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.minutes-button.view:hover {
+  background: linear-gradient(135deg, #800029, #990033);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(153, 0, 51, 0.4);
+}
+
+/* 회의록 상태 표시 */
+.minutes-writing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #999999, #B3B3B3);
+  color: white;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.minutes-writing i {
+  font-size: 14px;
+}
+
+.minutes-file {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #990033, #B30040);
+  color: white;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(153, 0, 51, 0.3);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.minutes-file:hover {
+  background: linear-gradient(135deg, #800029, #990033);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(153, 0, 51, 0.4);
+}
+
+.minutes-file i {
+  font-size: 14px;
+}
+
+.minutes-file span {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 빈 테이블 상태 */
+.empty-table {
+  text-align: center;
+  padding: 60px 20px !important;
+  background-color: #fafafa;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+
+.empty-state i {
+  font-size: 48px;
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+  margin: 0 0 8px 0;
+}
+
+.empty-state p {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 배포 버튼 스타일 */
+.meeting-distribute {
+  text-align: center;
+}
+
+.distribute-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.distribute-btn:hover {
+  background: linear-gradient(135deg, #218838, #1e7e34);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.distribute-btn.distributed {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.distribute-btn.distributed:hover {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  transform: none;
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+.distribute-btn:disabled {
+  cursor: not-allowed;
+}
+
+.distribute-btn i {
+  font-size: 12px;
+}
+
+.no-distribute {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.no-distribute span {
+  color: #999;
+  font-style: italic;
+} 
