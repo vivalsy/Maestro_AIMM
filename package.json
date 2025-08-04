@@ -1,19 +1,9 @@
 {
-  "homepage": "https://vivalsy.github.io/Maestro_AIMM",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  }
-}
-
-
-{
   "name": "meeting-management-system",
   "version": "1.0.0",
   "description": "Maestro (AI Meeting Master)",
   "private": true,
+  "homepage": "https://vivalsy.github.io/Maestro_AIMM",
   "dependencies": {
     "@types/node": "^16.18.0",
     "@types/react": "^18.2.0",
@@ -31,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
