@@ -1,4 +1,15 @@
 {
+  "homepage": "https://vivalsy.github.io/Maestro_AIMM",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
+
+
+{
   "name": "meeting-management-system",
   "version": "1.0.0",
   "description": "Maestro (AI Meeting Master)",
@@ -7,6 +18,7 @@
     "@types/node": "^16.18.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "gh-pages": "^6.3.0",
     "jspdf": "^3.0.1",
     "jspdf-font": "^1.0.7",
     "react": "^18.2.0",
