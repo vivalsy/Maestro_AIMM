@@ -9,6 +9,7 @@ import MeetingRecordingModal from './components/MeetingRecordingModal';
 import EmailDistributionModal, { EmailData } from './components/EmailDistributionModal';
 import { Meeting } from './types/Meeting';
 import { meetings as initialMeetings } from './data/meetings';
+import { meetingsApi } from './services/api';
 import './App.css';
 
 const App: React.FC = () => {
@@ -22,9 +23,51 @@ const App: React.FC = () => {
   const [emailMeeting, setEmailMeeting] = useState<Meeting | null>(null);
   const [webexConnecting, setWebexConnecting] = useState<string | null>(null); // WebEx 연결 중인 회의 ID
 
+  // 백엔드에서 회의 데이터 로드
+  const loadMeetingsFromBackend = async () => {
+    try {
+      const backendMeetings = await meetingsApi.getAll();
+      console.log('백엔드에서 로드된 회의:', backendMeetings);
+      
+      if (backendMeetings && backendMeetings.meetings && backendMeetings.meetings.length > 0) {
+        // 백엔드 데이터를 프론트엔드 형식으로 변환
+        const convertedMeetings = backendMeetings.meetings.map((meeting: any) => ({
+          id: meeting._id || meeting.id,
+          name: meeting.title,
+          date: meeting.date,
+          time: `${meeting.startTime}~${meeting.endTime}`,
+          startDateTime: new Date(`${meeting.date}T${meeting.startTime}:00`),
+          endDateTime: new Date(`${meeting.date}T${meeting.endTime}:00`),
+          location: meeting.location,
+          organizer: {
+            name: meeting.organizer,
+            title: '주관자'
+          },
+          attendees: meeting.attendees || [],
+          totalAttendees: meeting.attendees ? meeting.attendees.length + 1 : 1,
+          webexUrl: meeting.webexInfo?.url,
+          status: meeting.status || 'scheduled',
+          agendaItems: meeting.agendas || [],
+          meetingScript: meeting.recordings?.[0]?.scripts || [],
+          minutesContent: meeting.record?.summary || '',
+          minutesFile: meeting.record?.pdfPath
+        }));
+        
+        setMeetings(convertedMeetings);
+      } else {
+        // 백엔드에 데이터가 없으면 로컬 데이터 사용
+        setMeetings(initialMeetings);
+      }
+    } catch (error) {
+      console.error('백엔드에서 회의 데이터 로드 실패:', error);
+      // 백엔드 연결 실패 시 로컬 데이터 사용
+      setMeetings(initialMeetings);
+    }
+  };
+
   // 초기 데이터 로드
   useEffect(() => {
-    setMeetings(initialMeetings);
+    loadMeetingsFromBackend();
   }, []);
 
   useEffect(() => {
@@ -58,73 +101,44 @@ const App: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const handleModalSave = (meetingData: any) => {
-    // 날짜와 시간을 결합하여 DateTime 객체 생성
-    const startTime = new Date(`${meetingData.date}T${meetingData.startTime}:00`);
-    const endTime = new Date(`${meetingData.date}T${meetingData.endTime}:00`);
-    
-    if (editingMeeting) {
-      // 편집 모드: 기존 회의 업데이트
-      const updatedMeeting: Meeting = {
-        ...editingMeeting,
-        name: meetingData.meetingName,
+  const handleModalSave = async (meetingData: any) => {
+    try {
+      // 백엔드로 전송할 데이터 형식
+      const backendMeetingData = {
+        title: meetingData.meetingName,
         date: meetingData.date,
-        time: `${meetingData.startTime}~${meetingData.endTime}`,
-        startDateTime: startTime,
-        endDateTime: endTime,
+        startTime: meetingData.startTime,
+        endTime: meetingData.endTime,
         location: meetingData.location || '장소 미정',
-        organizer: {
-          name: meetingData.organizer || '주관자 미정',
-          title: '주관자'
-        },
+        organizer: meetingData.organizer || '주관자 미정',
         attendees: meetingData.attendees ? meetingData.attendees.split(',').map((name: string) => name.trim()) : [],
-        totalAttendees: meetingData.attendees ? meetingData.attendees.split(',').length + 1 : 1,
-        webexUrl: meetingData.webexUrl && meetingData.webexUrl.trim() !== '' ? meetingData.webexUrl : undefined,
-        agendaItems: meetingData.agendaItems || editingMeeting.agendaItems,
-        meetingScript: editingMeeting.meetingScript,
-        minutesContent: editingMeeting.minutesContent
+        webexInfo: meetingData.webexUrl && meetingData.webexUrl.trim() !== '' ? {
+          url: meetingData.webexUrl,
+          meetingKey: '',
+          meetingPassword: ''
+        } : undefined,
+        status: 'scheduled'
       };
 
-      setMeetings(prev => prev.map(meeting => 
-        meeting.id === editingMeeting.id ? updatedMeeting : meeting
-      ));
-      
-      console.log('회의 수정:', updatedMeeting);
-      window.alert('회의가 성공적으로 수정되었습니다.');
-    } else {
-      // 새 회의 등록 모드
-      const newMeeting: Meeting = {
-        id: Date.now().toString(), // 고유 ID 생성
-        name: meetingData.meetingName,
-        date: meetingData.date,
-        time: `${meetingData.startTime}~${meetingData.endTime}`,
-        startDateTime: startTime,
-        endDateTime: endTime,
-        location: meetingData.location || '장소 미정',
-        organizer: {
-          name: meetingData.organizer || '주관자 미정',
-          title: '주관자'
-        },
-        attendees: meetingData.attendees ? meetingData.attendees.split(',').map((name: string) => name.trim()) : [],
-        totalAttendees: meetingData.attendees ? meetingData.attendees.split(',').length + 1 : 1, // 주관자 포함
-        webexUrl: meetingData.webexUrl && meetingData.webexUrl.trim() !== '' ? meetingData.webexUrl : undefined,
-        status: 'scheduled',
-        minutesStatus: 'write',
-        hasLiveRecording: false,
-        agendaItems: meetingData.agendaItems || [],
-        meetingScript: '',
-        minutesContent: ''
-      };
+      if (editingMeeting) {
+        // 편집 모드: 백엔드에서 회의 업데이트
+        await meetingsApi.update(editingMeeting.id, backendMeetingData);
+        console.log('회의 수정 완료');
+        window.alert('회의가 성공적으로 수정되었습니다.');
+      } else {
+        // 새 회의 등록 모드: 백엔드에서 회의 생성
+        await meetingsApi.create(backendMeetingData);
+        console.log('회의 생성 완료');
+        window.alert('회의가 성공적으로 등록되었습니다.');
+      }
 
-      // 새로운 회의를 목록에 추가
-      setMeetings(prev => [...prev, newMeeting]);
+      // 백엔드에서 최신 데이터 다시 로드
+      await loadMeetingsFromBackend();
       
-      console.log('새 회의 등록:', newMeeting);
-      window.alert('회의가 성공적으로 등록되었습니다.');
+    } catch (error) {
+      console.error('회의 저장 실패:', error);
+      window.alert('회의 저장 중 오류가 발생했습니다.');
     }
-    
-    setIsModalOpen(false);
-    setEditingMeeting(null);
   };
 
   const handleWebexJoin = (meeting: Meeting) => {

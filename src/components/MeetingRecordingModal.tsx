@@ -1449,7 +1449,7 @@ ${minutesContent}`;
         <div className="modal-overlay">
           <div className="modal-container add-modal">
             <div className="modal-header">
-              <h3>새 Agenda 항목 추가</h3>
+              <h3>Agenda 항목 추가</h3>
             </div>
             <div className="modal-content">
               <div className="add-form">

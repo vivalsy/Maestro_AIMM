@@ -770,6 +770,18 @@
   box-shadow: none;
 }
 
+/* 새 항목 추가 모달 취소 버튼 스타일 */
+.add-modal .modal-actions .btn-cancel {
+  background-color: #6c757d;
+  color: white;
+  border: 1px solid #6c757d;
+}
+
+.add-modal .modal-actions .btn-cancel:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .recording-modal {
