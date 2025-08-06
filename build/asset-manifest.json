@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/Maestro_AIMM/static/css/main.aff53387.css",
-    "main.js": "/Maestro_AIMM/static/js/main.b1eac75f.js",
+    "main.css": "/Maestro_AIMM/static/css/main.0dfa8026.css",
+    "main.js": "/Maestro_AIMM/static/js/main.4139683a.js",
     "static/js/239.8e3ad246.chunk.js": "/Maestro_AIMM/static/js/239.8e3ad246.chunk.js",
     "static/js/977.8de17932.chunk.js": "/Maestro_AIMM/static/js/977.8de17932.chunk.js",
     "static/js/732.517218f7.chunk.js": "/Maestro_AIMM/static/js/732.517218f7.chunk.js",
     "index.html": "/Maestro_AIMM/index.html",
-    "main.aff53387.css.map": "/Maestro_AIMM/static/css/main.aff53387.css.map",
-    "main.b1eac75f.js.map": "/Maestro_AIMM/static/js/main.b1eac75f.js.map",
+    "main.0dfa8026.css.map": "/Maestro_AIMM/static/css/main.0dfa8026.css.map",
+    "main.4139683a.js.map": "/Maestro_AIMM/static/js/main.4139683a.js.map",
     "239.8e3ad246.chunk.js.map": "/Maestro_AIMM/static/js/239.8e3ad246.chunk.js.map",
     "977.8de17932.chunk.js.map": "/Maestro_AIMM/static/js/977.8de17932.chunk.js.map",
     "732.517218f7.chunk.js.map": "/Maestro_AIMM/static/js/732.517218f7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aff53387.css",
-    "static/js/main.b1eac75f.js"
+    "static/css/main.0dfa8026.css",
+    "static/js/main.4139683a.js"
   ]
 }
