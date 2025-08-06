@@ -1,0 +1,259 @@
+.calendar-picker {
+  position: relative;
+  width: 100%;
+}
+
+.calendar-input {
+  position: relative;
+  width: 100%;
+}
+
+.calendar-input-field {
+  width: 100%;
+  padding: 12px 16px;
+  padding-right: 40px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.calendar-input-field:focus {
+  outline: none;
+  border-color: #990033;
+  box-shadow: 0 0 0 3px rgba(153, 0, 51, 0.1);
+}
+
+.calendar-input.error .calendar-input-field {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.calendar-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.calendar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  margin-top: 4px;
+  min-width: 280px;
+  max-width: 320px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #F0F0F0;
+  background: linear-gradient(135deg, #990033, #B30040);
+  color: white;
+  border-radius: 6px 6px 0 0;
+}
+
+.calendar-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+.calendar-nav-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.calendar-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.calendar-nav-btn i {
+  font-size: 12px;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #F8F8F8;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.calendar-weekday {
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  border-right: 1px solid #E0E0E0;
+}
+
+.calendar-weekday:last-child {
+  border-right: none;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 8px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  border-radius: 6px;
+  margin: 2px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-day:hover:not(:disabled) {
+  background: rgba(153, 0, 51, 0.1);
+  color: #990033;
+}
+
+.calendar-day.today {
+  background: rgba(153, 0, 51, 0.15);
+  color: #990033;
+  font-weight: 600;
+}
+
+.calendar-day.selected {
+  background: #990033;
+  color: white;
+  font-weight: 600;
+}
+
+.calendar-day.selected:hover {
+  background: #B30040;
+}
+
+.calendar-day.other-month {
+  color: #CCC;
+  cursor: not-allowed;
+}
+
+.calendar-day.other-month:hover {
+  background: transparent;
+  color: #CCC;
+}
+
+.calendar-footer {
+  padding: 12px 16px;
+  border-top: 1px solid #F0F0F0;
+  display: flex;
+  justify-content: center;
+}
+
+.calendar-footer .btn {
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+.quick-select-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quick-select-buttons .btn {
+  padding: 6px 12px;
+  font-size: 11px;
+  min-width: 60px;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .calendar-dropdown {
+    min-width: 260px;
+    max-width: 300px;
+  }
+  
+  .calendar-day {
+    font-size: 13px;
+  }
+  
+  .calendar-title {
+    font-size: 14px;
+  }
+  
+  .calendar-nav-btn {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .quick-select-buttons {
+    gap: 4px;
+  }
+  
+  .quick-select-buttons .btn {
+    padding: 4px 8px;
+    font-size: 10px;
+    min-width: 50px;
+  }
+}
+
+/* 애니메이션 */
+.calendar-dropdown {
+  animation: calendarSlideDown 0.2s ease-out;
+}
+
+@keyframes calendarSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 포커스 아웃 시 드롭다운 닫기 */
+.calendar-picker:focus-within .calendar-dropdown {
+  display: block;
+}
+
+/* 호버 효과 개선 */
+.calendar-input:hover .calendar-input-field {
+  border-color: #B0B0B0;
+}
+
+.calendar-input:hover .calendar-icon {
+  color: #990033;
+} 

@@ -13,6 +13,11 @@ export interface Meeting {
   attendees: string[];
   totalAttendees: number;
   webexUrl?: string;
+  webexInfo?: {
+    url: string;
+    meetingKey: string;
+    meetingPassword: string;
+  };
   status: 'scheduled' | 'in-progress' | 'completed';
   minutesStatus: 'write' | 'view';
   hasLiveRecording?: boolean;

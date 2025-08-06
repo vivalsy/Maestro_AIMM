@@ -41,11 +41,12 @@ const App: React.FC = () => {
           location: meeting.location,
           organizer: {
             name: meeting.organizer,
-            title: '주관자'
+            title: '작성자'
           },
           attendees: meeting.attendees || [],
           totalAttendees: meeting.attendees ? meeting.attendees.length + 1 : 1,
           webexUrl: meeting.webexInfo?.url,
+          webexInfo: meeting.webexInfo,
           status: meeting.status || 'scheduled',
           agendaItems: meeting.agendas || [],
           meetingScript: meeting.recordings?.[0]?.scripts || [],
@@ -110,34 +111,50 @@ const App: React.FC = () => {
         startTime: meetingData.startTime,
         endTime: meetingData.endTime,
         location: meetingData.location || '장소 미정',
-        organizer: meetingData.organizer || '주관자 미정',
-        attendees: meetingData.attendees ? meetingData.attendees.split(',').map((name: string) => name.trim()) : [],
+        organizer: meetingData.organizer || '작성자 미정',
+        attendees: meetingData.attendees ? meetingData.attendees.split(',').map((name: string) => ({
+          name: name.trim(),
+          email: `${name.trim().toLowerCase().replace(/\s+/g, '')}@company.com`,
+          department: '일반'
+        })) : [],
         webexInfo: meetingData.webexUrl && meetingData.webexUrl.trim() !== '' ? {
           url: meetingData.webexUrl,
-          meetingKey: '',
-          meetingPassword: ''
+          meetingKey: meetingData.meetingKey || '',
+          meetingPassword: meetingData.meetingPassword || ''
         } : undefined,
-        status: 'scheduled'
+        status: 'scheduled',
+        agendas: meetingData.agendaItems || []
       };
 
+      let savedMeeting;
+      
       if (editingMeeting) {
         // 편집 모드: 백엔드에서 회의 업데이트
-        await meetingsApi.update(editingMeeting.id, backendMeetingData);
-        console.log('회의 수정 완료');
+        const response = await meetingsApi.update(editingMeeting.id, backendMeetingData);
+        savedMeeting = response.meeting; // 백엔드 응답에서 meeting 객체 추출
+        console.log('회의 수정 완료:', savedMeeting);
         window.alert('회의가 성공적으로 수정되었습니다.');
       } else {
         // 새 회의 등록 모드: 백엔드에서 회의 생성
-        await meetingsApi.create(backendMeetingData);
-        console.log('회의 생성 완료');
+        const response = await meetingsApi.create(backendMeetingData);
+        savedMeeting = response.meeting; // 백엔드 응답에서 meeting 객체 추출
+        console.log('회의 생성 완료:', savedMeeting);
         window.alert('회의가 성공적으로 등록되었습니다.');
       }
 
       // 백엔드에서 최신 데이터 다시 로드
       await loadMeetingsFromBackend();
       
+      // 모달 닫기
+      handleModalClose();
+      
+      return savedMeeting;
+      
     } catch (error) {
       console.error('회의 저장 실패:', error);
-      window.alert('회의 저장 중 오류가 발생했습니다.');
+      const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류가 발생했습니다.';
+      window.alert(`회의 저장 중 오류가 발생했습니다: ${errorMessage}`);
+      throw error; // 에러를 다시 던져서 호출자에게 전달
     }
   };
 
@@ -411,15 +428,6 @@ const App: React.FC = () => {
           meetingName={currentMeeting.name}
           agendaItems={currentMeeting.agendaItems || []}
           existingScript={currentMeeting.meetingScript}
-          existingMinutes={currentMeeting.minutesContent}
-          meetingInfo={{
-            date: currentMeeting.date,
-            time: currentMeeting.time,
-            location: currentMeeting.location,
-            organizer: currentMeeting.organizer.name,
-            attendees: currentMeeting.attendees
-          }}
-          onExportMinutes={handleExportMinutes}
         />
       )}
       <EmailDistributionModal

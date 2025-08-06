@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
       <div className="search-bar">
         <input
           type="text"
-          placeholder="회의명, 주관자, 날짜, 키워드, 진행상태 등으로 검색"
+          placeholder="회의명, 작성자, 날짜, 키워드, 진행상태 등으로 검색"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyPress={handleKeyPress}

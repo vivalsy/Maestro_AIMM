@@ -83,6 +83,8 @@ router.get('/:id', async (req, res) => {
 // 새 회의 생성
 router.post('/', async (req, res) => {
   try {
+    console.log('회의 생성 요청 데이터:', req.body);
+    
     const meetingData = {
       ...req.body,
       createdBy: req.body.createdBy || 'system'
@@ -90,6 +92,8 @@ router.post('/', async (req, res) => {
     
     const meeting = new Meeting(meetingData);
     await meeting.save();
+    
+    console.log('생성된 회의:', meeting);
     
     res.status(201).json({
       message: '회의가 성공적으로 생성되었습니다.',
@@ -107,6 +111,8 @@ router.post('/', async (req, res) => {
 // 회의 수정
 router.put('/:id', async (req, res) => {
   try {
+    console.log('회의 수정 요청 데이터:', req.body);
+    
     const meeting = await Meeting.findByIdAndUpdate(
       req.params.id,
       { ...req.body, updatedAt: new Date() },
@@ -116,6 +122,8 @@ router.put('/:id', async (req, res) => {
     if (!meeting) {
       return res.status(404).json({ message: '회의를 찾을 수 없습니다.' });
     }
+    
+    console.log('수정된 회의:', meeting);
     
     res.json({
       message: '회의가 성공적으로 수정되었습니다.',

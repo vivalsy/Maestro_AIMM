@@ -104,7 +104,7 @@ const MeetingTable: React.FC<MeetingTableProps> = ({
             <th>회의명</th>
             <th>일시</th>
             <th>장소</th>
-            <th>주관자</th>
+            <th>작성자</th>
             <th>참석자</th>
             <th>WebEx</th>
             <th>상태</th>

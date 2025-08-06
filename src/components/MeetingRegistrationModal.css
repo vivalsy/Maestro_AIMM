@@ -275,6 +275,16 @@
   font-size: 14px;
 }
 
+/* Hide browser's default calendar icon for date inputs */
+.input-with-icon input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.input-with-icon input[type="date"]::-webkit-inner-spin-button,
+.input-with-icon input[type="date"]::-webkit-outer-spin-button {
+  display: none;
+}
+
 /* 주소록 드롭다운 스타일 */
 .dropdown-container {
   position: relative;
@@ -709,5 +719,1158 @@
   
   .empty-agenda i {
     font-size: 36px;
+  }
+}
+
+/* 회의록 탭 스타일 */
+.record-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+.meeting-info {
+  background: #F8F8F8;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+}
+
+.meeting-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 16px 0;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-item label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-item span {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.record-table-container {
+  flex: 1;
+  overflow-y: auto;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+}
+
+.record-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.record-table th {
+  background: #F8F8F8;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #E0E0E0;
+  font-size: 13px;
+}
+
+.record-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #F0F0F0;
+  vertical-align: top;
+  min-height: 80px;
+}
+
+.record-table tr:hover {
+  background: #FAFAFA;
+}
+
+.instruction-row {
+  background: #FFF8E1;
+}
+
+.instruction-row:hover {
+  background: #FFF3CD;
+}
+
+.discussion-textarea {
+  width: 100%;
+  min-height: 60px;
+  max-height: 120px;
+  padding: 8px 12px;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: inherit;
+  line-height: 1.4;
+  resize: vertical;
+  background: white;
+  white-space: pre-line;
+}
+
+.discussion-textarea:focus {
+  outline: none;
+  border-color: #990033;
+  box-shadow: 0 0 0 2px rgba(153, 0, 51, 0.1);
+}
+
+.type-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+}
+
+.type-select:focus {
+  outline: none;
+  border-color: #990033;
+  box-shadow: 0 0 0 2px rgba(153, 0, 51, 0.1);
+}
+
+.department-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  font-size: 13px;
+  background: white;
+}
+
+.department-input:focus {
+  outline: none;
+  border-color: #990033;
+  box-shadow: 0 0 0 2px rgba(153, 0, 51, 0.1);
+}
+
+.discussion-textarea.disabled,
+.type-select.disabled,
+.department-input.disabled {
+  background: #F5F5F5;
+  color: #999;
+  cursor: not-allowed;
+  border-color: #E0E0E0;
+}
+
+.discussion-textarea.disabled:focus,
+.type-select.disabled:focus,
+.department-input.disabled:focus {
+  box-shadow: none;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.action-buttons .btn {
+  padding: 6px 10px;
+  font-size: 11px;
+  min-width: 32px;
+  height: 32px;
+}
+
+.action-buttons .btn i {
+  font-size: 10px;
+}
+
+.action-buttons .btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.action-buttons .btn-danger:hover {
+  background: #c82333;
+}
+
+.action-buttons .btn-cancel {
+  background: #6c757d;
+  color: white;
+}
+
+.action-buttons .btn-cancel:hover {
+  background: #5a6268;
+}
+
+.delete-modal {
+  max-width: 400px;
+}
+
+.delete-modal .modal-content {
+  padding: 24px;
+  text-align: center;
+}
+
+.delete-warning {
+  margin-bottom: 24px;
+}
+
+.delete-warning i {
+  font-size: 48px;
+  color: #ffc107;
+  margin-bottom: 16px;
+}
+
+.delete-warning p {
+  font-size: 16px;
+  color: #333;
+  margin: 8px 0;
+}
+
+.delete-warning strong {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.delete-note {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+.delete-modal .modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.delete-modal .modal-actions .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 100px;
+}
+
+.delete-modal .modal-actions .btn i {
+  margin-right: 8px;
+}
+
+.delete-modal .modal-actions .btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.delete-modal .modal-actions .btn-danger:hover {
+  background: #c82333;
+}
+
+.delete-modal .modal-actions .btn-cancel {
+  background: #6c757d;
+  color: white;
+}
+
+.delete-modal .modal-actions .btn-cancel:hover {
+  background: #5a6268;
+}
+
+.add-agenda-section {
+  padding: 20px;
+  background: #F8F8F8;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+  margin-top: 20px;
+}
+
+.add-agenda-btn {
+  background: #990033;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.add-agenda-btn:hover {
+  background: #B30040;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(153, 0, 51, 0.2);
+}
+
+.add-agenda-btn i {
+  font-size: 16px;
+}
+
+.agenda-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.export-btn {
+  background: #6c757d;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.export-btn:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.2);
+}
+
+.export-btn i {
+  font-size: 16px;
+}
+
+.add-modal {
+  max-width: 500px;
+}
+
+.add-modal .modal-content {
+  padding: 24px;
+}
+
+.add-form {
+  margin-bottom: 24px;
+}
+
+.add-form .form-group {
+  margin-bottom: 16px;
+}
+
+.add-form .form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.add-form .form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #E0E0E0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.add-form .form-input:focus {
+  outline: none;
+  border-color: #990033;
+  box-shadow: 0 0 0 3px rgba(153, 0, 51, 0.1);
+}
+
+.add-modal .modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.add-modal .modal-actions .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.add-modal .modal-actions .btn i {
+  font-size: 14px;
+}
+
+.add-modal .modal-actions .btn:disabled {
+  background: #E0E0E0;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.add-modal .modal-actions .btn:disabled:hover {
+  background: #E0E0E0;
+  transform: none;
+  box-shadow: none;
+}
+
+.add-modal .modal-actions .btn-cancel {
+  background: #6c757d;
+  color: white;
+}
+
+.add-modal .modal-actions .btn-cancel:hover {
+  background: #5a6268;
+}
+
+/* AI 분석 섹션 스타일 */
+.ai-analysis-section {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+  overflow: hidden;
+}
+
+.ai-analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #990033, #B30040);
+  color: white;
+}
+
+.ai-analysis-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF; /* LG White 색상 */
+}
+
+.ai-analysis-header h3 i {
+  font-size: 20px;
+  color: #FFD700;
+}
+
+.ai-analysis-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.ai-analysis-actions .btn {
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ai-analysis-actions .btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ai-analysis-actions .btn-outline-secondary {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #FFFFFF;
+}
+
+.ai-analysis-actions .btn-outline-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.ai-analysis-actions .btn-secondary {
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #FFFFFF;
+}
+
+.ai-analysis-actions .btn i {
+  font-size: 12px;
+}
+
+.ai-analysis-results {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ai-analysis-empty {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.ai-analysis-empty .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.ai-analysis-empty .empty-state i {
+  font-size: 48px;
+  color: #CCCCCC;
+  margin-bottom: 8px;
+}
+
+.ai-analysis-empty .empty-state h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #666666;
+  margin: 0;
+}
+
+.ai-analysis-empty .empty-state p {
+  font-size: 14px;
+  color: #999999;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ai-analysis-item {
+  background: #F8F8F8;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #E0E0E0;
+}
+
+.analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.analysis-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.script-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.script-status.has-script {
+  background: #E8F5E8;
+  color: #2E7D32;
+  border: 1px solid #4CAF50;
+}
+
+.script-status.no-script {
+  background: #FFF3E0;
+  color: #E65100;
+  border: 1px solid #FF9800;
+}
+
+.script-status i {
+  font-size: 10px;
+}
+
+.analysis-header h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.sentiment-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sentiment-badge.positive {
+  background: #d4edda;
+  color: #155724;
+}
+
+.sentiment-badge.negative {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.sentiment-badge.neutral {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.analysis-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.analysis-content h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.summary-section {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #E0E0E0;
+}
+
+.summary-section p {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.key-points-section,
+.action-items-section {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #E0E0E0;
+}
+
+.key-points-section ul,
+.action-items-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.key-points-section li,
+.action-items-section li {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.key-points-section li::marker {
+  color: #990033;
+  font-weight: bold;
+}
+
+.action-items-section li::marker {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.table-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.table-actions .btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.discussion-content {
+  position: relative;
+}
+
+.ai-analysis-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #F8F8F8;
+  border: 2px dashed #E0E0E0;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.ai-analysis-placeholder p {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 12px 0;
+}
+
+.ai-analysis-placeholder .btn {
+  padding: 6px 12px;
+  font-size: 11px;
+  background: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ai-analysis-placeholder .btn:hover {
+  background: #138496;
+}
+
+.ai-analysis-placeholder .btn i {
+  font-size: 10px;
+}
+
+.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Agenda 등록/수정 모달 스타일 */
+.agenda-modal {
+  max-width: 800px;
+}
+
+.agenda-modal .modal-content {
+  padding: 24px;
+}
+
+.agenda-modal .form-group {
+  margin-bottom: 20px;
+}
+
+.agenda-modal .form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.agenda-modal .form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #E0E0E0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.agenda-modal .form-input:focus {
+  outline: none;
+  border-color: #990033;
+  box-shadow: 0 0 0 3px rgba(153, 0, 51, 0.1);
+}
+
+.agenda-modal .form-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #E0E0E0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  background: white;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.agenda-modal .form-textarea:focus {
+  outline: none;
+  border-color: #990033;
+  box-shadow: 0 0 0 3px rgba(153, 0, 51, 0.1);
+}
+
+.agenda-modal .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.agenda-modal .file-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.agenda-modal .file-upload-container {
+  position: relative;
+  display: inline-block;
+}
+
+.agenda-modal .file-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.agenda-modal .file-upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #F0ECE4;
+  color: #990033;
+  border: 2px dashed #990033;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.agenda-modal .file-upload-label:hover {
+  background: #E8E0D8;
+  border-color: #800029;
+}
+
+.agenda-modal .uploaded-files {
+  margin-top: 12px;
+}
+
+.agenda-modal .uploaded-files h5 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #990033;
+  margin: 0 0 8px 0;
+}
+
+.agenda-modal .uploaded-files ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.agenda-modal .uploaded-files li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #F8F8F8;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+.agenda-modal .uploaded-files li:last-child {
+  margin-bottom: 0;
+}
+
+.agenda-modal .uploaded-files i {
+  color: #990033;
+  margin-right: 8px;
+}
+
+.agenda-modal .uploaded-files .btn {
+  padding: 4px 8px;
+  font-size: 10px;
+  margin-left: 8px;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .agenda-modal {
+    max-width: 95%;
+  }
+  
+  .agenda-modal .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .agenda-modal .file-upload-label {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .agenda-modal .uploaded-files li {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .ai-analysis-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .ai-analysis-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .ai-analysis-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  
+  .ai-analysis-empty {
+    padding: 20px;
+  }
+  
+  .ai-analysis-empty .empty-state i {
+    font-size: 36px;
+  }
+  
+  .ai-analysis-empty .empty-state h4 {
+    font-size: 16px;
+  }
+  
+  .ai-analysis-empty .empty-state p {
+    font-size: 13px;
+  }
+  
+  .analysis-status {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .script-status {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}
+
+/* 회의록 작성 필드 스타일 */
+.agenda-minutes-section {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #990033;
+}
+
+.agenda-minutes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.agenda-minutes-header h5 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.agenda-minutes-header h5 i {
+  color: #990033;
+}
+
+.agenda-minutes-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.agenda-minutes-actions .btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.agenda-minutes-actions .btn-outline-primary {
+  background: transparent;
+  border: 1px solid #990033;
+  color: #990033;
+}
+
+.agenda-minutes-actions .btn-outline-primary:hover {
+  background: #990033;
+  color: white;
+}
+
+.agenda-minutes-actions .btn-primary {
+  background: #990033;
+  border: 1px solid #990033;
+  color: white;
+}
+
+.agenda-minutes-actions .btn-primary:hover {
+  background: #800029;
+  border-color: #800029;
+}
+
+.agenda-minutes-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.agenda-minutes-textarea:focus {
+  outline: none;
+  border-color: #990033;
+  box-shadow: 0 0 0 3px rgba(153, 0, 51, 0.1);
+}
+
+.agenda-minutes-textarea::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* 읽기 모드 스타일 */
+.agenda-minutes-display {
+  min-height: 80px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+}
+
+.minutes-content {
+  line-height: 1.6;
+}
+
+.minutes-content p {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.minutes-content p:last-child {
+  margin-bottom: 0;
+}
+
+.minutes-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #999;
+  padding: 20px;
+}
+
+.minutes-empty i {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: #ccc;
+}
+
+.minutes-empty p {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.minutes-empty small {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 모바일에서 회의록 작성 필드 반응형 */
+@media (max-width: 768px) {
+  .agenda-minutes-section {
+    padding: 12px;
+    margin-top: 12px;
+  }
+  
+  .agenda-minutes-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .agenda-minutes-header h5 {
+    font-size: 13px;
+  }
+  
+  .agenda-minutes-actions {
+    width: 100%;
+  }
+  
+  .agenda-minutes-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+  
+  .agenda-minutes-textarea,
+  .agenda-minutes-display {
+    min-height: 60px;
+    font-size: 13px;
+    padding: 10px;
+  }
+  
+  .minutes-empty {
+    padding: 16px;
+  }
+  
+  .minutes-empty i {
+    font-size: 20px;
+  }
+  
+  .minutes-empty p {
+    font-size: 13px;
+  }
+  
+  .minutes-empty small {
+    font-size: 11px;
   }
 } 

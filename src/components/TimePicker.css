@@ -1,0 +1,201 @@
+.time-picker {
+  position: relative;
+  width: 100%;
+}
+
+.time-input {
+  position: relative;
+  width: 100%;
+}
+
+.time-input-field {
+  width: 100%;
+  padding: 12px 16px;
+  padding-right: 40px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.time-input-field:focus {
+  outline: none;
+  border-color: #990033;
+  box-shadow: 0 0 0 3px rgba(153, 0, 51, 0.1);
+}
+
+.time-input.error .time-input-field {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.time-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.time-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  margin-top: 4px;
+  min-width: 200px;
+  max-width: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.time-header {
+  padding: 16px;
+  border-bottom: 1px solid #F0F0F0;
+  background: linear-gradient(135deg, #990033, #B30040);
+  color: white;
+  border-radius: 6px 6px 0 0;
+}
+
+.time-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.quick-time-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #F0F0F0;
+  background: #F8F8F8;
+}
+
+.quick-time-buttons .btn {
+  padding: 6px 12px;
+  font-size: 11px;
+  min-width: 70px;
+}
+
+.time-options {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.time-option {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.time-option:hover {
+  background: rgba(153, 0, 51, 0.1);
+  color: #990033;
+}
+
+.time-option.selected {
+  background: #990033;
+  color: white;
+  font-weight: 600;
+}
+
+.time-option.selected:hover {
+  background: #B30040;
+}
+
+.time-option:last-child {
+  border-bottom: none;
+}
+
+/* 스크롤바 스타일링 */
+.time-options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.time-options::-webkit-scrollbar-track {
+  background: #F0F0F0;
+  border-radius: 3px;
+}
+
+.time-options::-webkit-scrollbar-thumb {
+  background: #CCC;
+  border-radius: 3px;
+}
+
+.time-options::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .time-dropdown {
+    min-width: 180px;
+    max-width: 220px;
+  }
+  
+  .time-option {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  
+  .time-title {
+    font-size: 14px;
+  }
+  
+  .quick-time-buttons {
+    gap: 4px;
+    padding: 8px 12px;
+  }
+  
+  .quick-time-buttons .btn {
+    padding: 4px 8px;
+    font-size: 10px;
+    min-width: 60px;
+  }
+}
+
+/* 애니메이션 */
+.time-dropdown {
+  animation: timeSlideDown 0.2s ease-out;
+}
+
+@keyframes timeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 호버 효과 개선 */
+.time-input:hover .time-input-field {
+  border-color: #B0B0B0;
+}
+
+.time-input:hover .time-icon {
+  color: #990033;
+} 

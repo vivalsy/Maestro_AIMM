@@ -27,7 +27,8 @@ const connectDB = async () => {
 
   } catch (error) {
     console.error('Database connection error:', error);
-    process.exit(1);
+    console.log('MongoDB 연결 실패. 메모리 기반 데이터베이스를 사용합니다.');
+    // MongoDB 연결 실패 시에도 서버는 계속 실행
   }
 };
 

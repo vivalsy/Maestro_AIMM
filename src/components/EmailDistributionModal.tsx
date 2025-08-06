@@ -99,7 +99,7 @@ const EmailDistributionModal: React.FC<EmailDistributionModalProps> = ({
               <p><strong>회의명:</strong> {meeting.name}</p>
               <p><strong>일시:</strong> {meeting.date} {meeting.time}</p>
               <p><strong>장소:</strong> {meeting.location}</p>
-              <p><strong>주관자:</strong> {meeting.organizer.name}</p>
+                              <p><strong>작성자:</strong> {meeting.organizer.name}</p>
               {meeting.minutesFile && (
                 <p><strong>회의록 파일:</strong> {meeting.minutesFile}</p>
               )}

@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
 class ApiService {
   constructor() {
@@ -17,6 +17,7 @@ class ApiService {
     };
 
     try {
+      console.log('API 요청:', url, config);
       const response = await fetch(url, config);
       
       if (!response.ok) {
@@ -27,6 +28,17 @@ class ApiService {
       return await response.json();
     } catch (error) {
       console.error('API request failed:', error);
+      
+      // 네트워크 에러 처리
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        throw new Error('서버에 연결할 수 없습니다. 서버가 실행 중인지 확인해주세요.');
+      }
+      
+      // CORS 에러 처리
+      if (error.message.includes('CORS')) {
+        throw new Error('CORS 정책 오류가 발생했습니다. 서버 설정을 확인해주세요.');
+      }
+      
       throw error;
     }
   }
